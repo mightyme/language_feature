@@ -16,24 +16,34 @@
  * =====================================================================================
  */
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct _stuff {
-	int id;
+	unsigned long id;
 	int salary;
-	bool from_campus;
+	int from_campus;
 	char name[20];
 } stuff_t, *pstuff_t;
 
 int main(void) 
 {
-	pstuff_t cur;
-	pstuff_t qd;
+	pstuff_t cur = NULL;
+	pstuff_t qd = NULL;
 	qd = malloc(sizeof(stuff_t));
-	qd->id = 500293;
+	memset(qd, 0, sizeof(stuff_t));
+	qd->id = 0x0102030405060708;
 	qd->salary = 30000;
-	qd->from_campus = true;
+	qd->from_campus = 1;
 	strncpy(qd->name, "qudao", sizeof(qd->name));
-	printk("%s(), cur:%p, qd:%p\n, sizeof(cur)::", __func__, cur, qd);
-	memcpy(cur, &qd, sizeof(stuff_t));
-
+	printf("%s(), cur:%p, qd:%p\n, sizeof(cur):%ld\n",
+		__func__, cur, qd, sizeof(cur));
+	memcpy(&cur, &qd, sizeof(cur));
+	printf("memcpy &qd, cur:%p(should be the same with qd:%p),cur->id:%lu\n",
+		cur, qd, cur->id);
+	memcpy(&cur, qd, sizeof(cur));
+	printf("memcpy qd, cur:%p(should related to 0x%lx)\n",
+		cur, qd->id);
+	free(qd);
+	return 0;
 }
