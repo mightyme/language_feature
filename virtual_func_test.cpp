@@ -22,6 +22,7 @@ using namespace std;
 class CBase
 {
 public:
+	CBase() {cout << "CBase created" << endl;}
     virtual void act1()    {cout<<"CBase::act1()! ";    act2();}
     void act2()        {cout<<"CBase::act2()! ";    act3();}
     virtual void act3()    {cout<<"CBase::act3()! ";    act4();}
@@ -32,6 +33,7 @@ public:
 class CDerive :public CBase
 {
 public:
+	CDerive() {cout << "Son CDerive created" << endl;}
     void act3()    {cout<<"CDerive::act3()! ";        act4();}
     void act4()    {cout<<"CDerive::act4()! ";        act5();}    //此处的act5()调用CDerive类的act5
     void act5()    {cout<<"CDerive::act5()! ";        }
