@@ -25,7 +25,7 @@ public:
     virtual void act1()    {cout<<"CBase::act1()! ";    act2();}
     void act2()        {cout<<"CBase::act2()! ";    act3();}
     virtual void act3()    {cout<<"CBase::act3()! ";    act4();}
-    virtual void act4()    {cout<<"CBase::act4()! ";    act5();}
+    void act4()    {cout<<"CBase::act4()! ";    act5();}
     void act5()        {cout<<"CBase::act5()! ";    }
 };
 
